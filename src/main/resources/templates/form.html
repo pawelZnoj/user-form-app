@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Formularz użytkownika</title>
 </head>
 <body>
 <h1>Formularz użytkownika</h1>
 
+<!-- Formularz -->
 <form th:action="@{/submit}" th:object="${user}" method="post">
+
     <label>Imię:</label>
-    <input type="text" th:field="*{firstName}" required /><br/><br/>
+    <input type="text" th:field="*{firstName}" required />
+    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" style="color:red"></div>
+    <br/>
 
     <label>Nazwisko:</label>
-    <input type="text" th:field="*{lastName}" required /><br/><br/>
+    <input type="text" th:field="*{lastName}" required />
+    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" style="color:red"></div>
+    <br/>
 
     <label>Wiek:</label>
-    <input type="number" th:field="*{age}" required /><br/><br/>
+    <input type="number" th:field="*{age}" required />
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color:red"></div>
+    <br/>
 
     <label>Email:</label>
-    <input type="email" th:field="*{email}" required /><br/><br/>
+    <input type="email" th:field="*{email}" required />
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" style="color:red"></div>
+    <br/>
 
+    <!-- PRZYCISK ZAPISZ -->
     <button type="submit">Zapisz</button>
+
 </form>
 
-<p th:text="${message}"></p>
+<!-- Komunikat po udanym zapisie -->
+<p th:text="${message}" style="color:green;"></p>
 
 </body>
 </html>
